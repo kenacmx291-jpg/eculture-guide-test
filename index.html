@@ -1,0 +1,177 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+  <meta charset="utf-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1" />\
+  <title>ECUlture Guide</title>\
+  <style>\
+    html, body \{ margin:0; padding:0; height:100%; background:#000; overflow:hidden; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; \}\
+\
+    /* Fullscreen camera video */\
+    #cam \{\
+      position: fixed;\
+      inset: 0;\
+      width: 100%;\
+      height: 100%;\
+      object-fit: cover;\
+      background: #000;\
+    \}\
+\
+    /* Overlay container */\
+    .overlay \{\
+      position: fixed;\
+      inset: 0;\
+      pointer-events: none;\
+    \}\
+\
+    /* Guide image */\
+    #guide \{\
+      position: absolute;\
+      left: 20px;\
+      bottom: 20px;\
+      width: min(38vw, 220px);\
+      height: auto;\
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.35));\
+      pointer-events: none;\
+    \}\
+\
+    /* Brand panel */\
+    .panel \{\
+      position: absolute;\
+      left: 20px;\
+      top: 20px;\
+      right: 20px;\
+      padding: 14px 14px 12px;\
+      border-radius: 14px;\
+      background: rgba(245, 250, 246, 0.86); /* very pale green/white */\
+      backdrop-filter: blur(10px);\
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);\
+      pointer-events: auto;\
+    \}\
+\
+    .title \{\
+      display:flex;\
+      align-items: baseline;\
+      justify-content: space-between;\
+      gap: 12px;\
+      margin-bottom: 8px;\
+    \}\
+\
+    .title h1 \{\
+      margin:0;\
+      font-size: 18px;\
+      letter-spacing: .04em;\
+      font-weight: 800;\
+      color:#000;\
+    \}\
+\
+    .pill \{\
+      font-size: 12px;\
+      font-weight: 700;\
+      letter-spacing: .06em;\
+      padding: 6px 10px;\
+      border-radius: 999px;\
+      background: #1ea98c; /* teal/green brand */\
+      color: #fff;\
+      white-space: nowrap;\
+    \}\
+\
+    .msg \{\
+      margin: 0 0 10px 0;\
+      font-size: 14px;\
+      line-height: 1.35;\
+      color:#111;\
+    \}\
+\
+    .buttons \{\
+      display:flex;\
+      flex-wrap: wrap;\
+      gap: 10px;\
+    \}\
+\
+    .btn \{\
+      pointer-events: auto;\
+      display:inline-flex;\
+      align-items:center;\
+      justify-content:center;\
+      gap: 8px;\
+      padding: 10px 12px;\
+      border-radius: 12px;\
+      border: 1px solid rgba(0,0,0,.12);\
+      background: #fff;\
+      color:#000;\
+      text-decoration:none;\
+      font-weight: 700;\
+      font-size: 13px;\
+    \}\
+\
+    .btn.primary \{\
+      background: #000;\
+      color: #fff;\
+      border-color: #000;\
+    \}\
+\
+    .hint \{\
+      position:absolute;\
+      right: 16px;\
+      bottom: 16px;\
+      font-size: 12px;\
+      color: rgba(255,255,255,.85);\
+      text-shadow: 0 2px 10px rgba(0,0,0,.6);\
+      pointer-events:none;\
+    \}\
+  </style>\
+</head>\
+\
+<body>\
+  <video id="cam" autoplay playsinline muted></video>\
+\
+  <div class="overlay">\
+    <div class="panel">\
+      <div class="title">\
+        <h1>ECULTURE GUIDE</h1>\
+        <div class="pill">ECUlture 2026</div>\
+      </div>\
+\
+      <p class="msg">\
+        Welcome. Tap below to open key spaces.\
+      </p>\
+\
+      <div class="buttons">\
+        <!-- Replace these with your real URLs -->\
+        <a class="btn primary" href="https://www.microsoft.com/microsoft-teams/" target="_blank" rel="noreferrer">Open Teams</a>\
+        <a class="btn" href="https://www.ecu.edu.au/" target="_blank" rel="noreferrer">Conference site</a>\
+        <a class="btn" href="#" onclick="alert('Swap this link to your PDF schedule URL.'); return false;">PDF schedule</a>\
+      </div>\
+    </div>\
+\
+    <img id="guide" src="guide.png" alt="ECUlture Guide" />\
+    <div class="hint">Point your camera at the venue signage \'95 Demo</div>\
+  </div>\
+\
+  <script>\
+    async function startCamera() \{\
+      const video = document.getElementById('cam');\
+      try \{\
+        const stream = await navigator.mediaDevices.getUserMedia(\{\
+          video: \{ facingMode: 'environment' \},\
+          audio: false\
+        \});\
+        video.srcObject = stream;\
+      \} catch (e) \{\
+        alert("Camera access failed. If you're on iPhone: Settings \uc0\u8594  Safari \u8594  Camera \u8594  Allow.");\
+        console.error(e);\
+      \}\
+    \}\
+    startCamera();\
+  </script>\
+</body>\
+</html>\
+}
